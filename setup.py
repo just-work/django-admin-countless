@@ -62,7 +62,7 @@ setup(
     version=get_version() or 'dev',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    packages=['admin_log'],
+    packages=['countless_admin'],
     url='https://github.com/just-work/django-admin-countless',
     license='MIT',
     author='Sergey Tikhonov',
