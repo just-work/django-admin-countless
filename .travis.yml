@@ -17,5 +17,6 @@ install:
 
 script:
   - python -m coverage run ./manage.py test -v3
+  - python ./setup.py sdist
 
 after_success: codecov
