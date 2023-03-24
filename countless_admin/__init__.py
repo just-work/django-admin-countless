@@ -91,7 +91,7 @@ class CountlessChangeList(ChangeList):
 
         # noinspection PyBroadException
         try:
-            page = self.paginator.page(self.page_num + 1)
+            page = self.paginator.page(self.page_num)
             self.result_list = list(page.object_list)
         except Exception:
             self.result_list = list()

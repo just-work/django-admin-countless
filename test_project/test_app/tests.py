@@ -11,7 +11,7 @@ class CountlessAdminTestCase(TestCase):
     def setUp(self):
         self.user = User.objects.create(is_superuser=True, is_staff=True)
         self.client.force_login(self.user, None)
-        models.MyModel.objects.create()
+        self.obj = models.MyModel.objects.create()
 
     def test_no_count(self):
         """ No count queries are executed on changelist page."""
@@ -21,3 +21,7 @@ class CountlessAdminTestCase(TestCase):
         self.assertEqual(r.status_code, 200)
         for query in context.captured_queries:
             self.assertNotIn("COUNT", query['sql'])
+        opts = self.obj._meta
+        url = reverse(f'admin:{opts.app_label}_{opts.model_name}_change',
+                      args=(self.obj.pk,))
+        self.assertContains(r, url)
